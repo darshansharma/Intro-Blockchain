@@ -1,0 +1,99 @@
+What is a private key, public key and an address? 
+To send and receive money in bitcoin you need an “account number” and a “password”.
+In bitcoin we call these a public key and a private key.
+However, this “account number” is annoyingly long (and difficult to type). So to make life easier we use a shortened version of this public key, and we call 
+it our address.
+And that’s the role of the private key, the public key, and the address.
+
+It all starts with the private key, which is just a randomly generated number:
+But because this number is so large, computers (and bitcoin) like to work with it in hexadecimal format:
+
+You use your private key to create your public key.
+But first of all, this public is going to be seen by other people. Therefore, when we use the private key to create our public key, we don’t want it to be 
+possible for anyone to figure out what our private key was.
+
+Because after all, the private key protects our bitcoins.
+Fortunately we can use a special type of mathematical function to achieve this.
+
+We just shove the private key in to it (which is a number after all), and the function spits out a public key (a new number).
+Now, there are two benefits of using this particular function:
+
+This function returns a public key that is mathematically connected to our private key. This will come in handy when we want to send bitcoins in a transaction.
+Even though the public key is connected to the private key, it’s not possible to figure out what the private key is from the public key. And this is why we use 
+this particular mathematical function… because it’s a “one-way” function.
+Oh yeah, that public key is hideous isn’t it. Nobody is going to enjoy typing that out, so let’s make it more practical and call it an address.
+
+Do I have to remember all 3 of these keys?
+Because your public key and address are worked out from your private key, you can get away with just saving your private key.
+So if worst comes to worst, if you ever need to send your address to someone, you can just work it out from your private key.
+In everyday life, it’s practical to keep note of your private key and address, because your address is what you give to people when you want to receive bitcoins.
+
+What happens if I lose my private key?
+It’s impossible to work out your private key from either your public key or address, so if you lose your private key, it’s lost.
+And if you haven’t got the private key for an address, any bitcoins located at that address will be locked there forever.
+
+Private Keys
+
+What is a private key? 
+A private key is a randomly generated number.
+Ex - 108165236279178312660610114131826512483935470542850824183737259708197206310322
+But to be more exact, because bitcoin uses 256-bit numbers, a randomly generated private key starts out looking like this:
+
+Binary - 1110111100100011010110101010110011111001000011011001111101001010101011011101100011001001001011100100101100100101011000101110000111011001111010111001011111110000110111111001101110100011101101010000100000100101100001110011100111001011000000010011110110110010
+
+Or to hexadecimal: ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2
+It doesn’t make a difference. They’re all the same number, and they’re all the same private key.
+
+Because after all, a private key is just a number.
+
+Digital Signature
+A digital signature is something you can use to show that you know the private key connected to a public key, without having to reveal the actual private key.
+So if anyone ever asks if you have the private key for a specific public key (or address), you can give them a digital signature to prove it.
+You just need to do a bit of mathematics to prove that the digital signature is connected to the public key.
+
+Why do we use digital signatures in Bitcoin?
+Because when you make a transaction, you need to unlock the outputs you’re trying to use. This is done by showing that you “own” the output, and you do this 
+by showing that you know the private key of the address the output is locked to.
+But if you put your private key in to the transaction data, everyone on the network will be able to see it.
+And if anyone gets your private key, they can use it to unlock and spend any other outputs that have been locked to that same address.
+
+So how can we unlock outputs without giving our private key away?
+Enter the digital signature.
+A digital signature can be used to unlock outputs, because it shows that we know the private key of an address.
+
+But the best thing is, using a digital signature means that we don’t give our private key away to the network:
+This is why we use digital signatures instead of putting our private keys directly in to the transaction data.
+
+
+What’s stopping someone from using a digital signature to unlock other outputs at my address?
+Good question. After all, if the private key will unlock any output locked to an address, why can’t someone take the digital signature and use it to do the same thing?
+In other words; you don’t just use your private key to make a digital signature… you use your private key and the original transaction data itself:
+Therefore, each digital signature is tied to the transaction it is being used in:
+So if someone tries to use this digital signature in a different transaction, it will conflict with the transaction data in the memory of the digital signature, and 
+nodes on the bitcoin network will not accept it.
+As a result, the digital signature will also protect against anyone tampering with the transaction it is being used in.
+
+How do digital signatures work?
+Mathematics, my boy.
+
+1. You combine the private key + transaction data, and use some mathematics to create a digital signature.
+2. You can then take the digital signature + transaction data + public key, do some more mathematics with them, and the result will confirm whether a legitimate private 
+key was used to create the digital signature.
+Because remember, the goal of a digital signature is to prove that you’re the owner of a public key.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
